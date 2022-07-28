@@ -1,46 +1,33 @@
-import pprint as p
-student_mark={}
-with open('D:\\Python Project\\medical-project\\python_basics_code\\10_file_handling\\student_marks.csv','r') as f:
-    lines= f.readline()
-    #print(lines)
-    key = lines.split(',')
-    key[-1]=key[-1][:-1]
-    #print(key)
-    for k in key:
-        student_mark[k] = []
-    #print(student_mark)
-    for d in f.readlines():
-        data = d.split(',')
-        data[-1] = data[-1][:-1]
-        #print(data)
-        i=0
-        for k in student_mark:
-            student_mark[k].append(data[i])
-            i= i+1
+class Avenger:
+    def __init__(self,Name,Age,Gender,Super_Power,Weapon):
+        self.Name= Name
+        self.Age= Age
+        self.Gender = Gender
+        self.Super_power= Super_Power
+        self.Weapon = Weapon
+    def getinfo(self):
+            return f"""
+            Avenger Profile:
 
-#print(student_mark)
-student_mark['total_marks'] = [0]*5
-#print(student_mark)
-subject_all = ['Maths', 'Physics', 'Chemistry', 'English', 'Biology', 'Economics', 'History', 'Civics']
-#print(subject_all)
-for n in range(0,5):
+            Name:   {self.Name}
+            Age:    {self.Age}
+            Gender: {self.Gender}
 
-        sum = 0
-        for i in subject_all:
-            try:
-                sum = sum + int(student_mark[i][n])
-                print(sum)
-            except:
-                pass
-        student_mark['total_marks'][n]= sum
-print(student_mark)
-
-student_mark['Avg'] = [0]*5
-print(student_mark)
-total_len = len(subject_all)
-for i in range(0,5):
-    student_mark['Avg'][i]= student_mark['total_marks'][i]/total_len
-print(student_mark)
+            Has {self.Weapon} weapon and {self.Super_power} super Power. 
+            """
 
 
 
+Super_heroes = ['Captain America', 'Iron Man', 'Black Widow', 'Hulk', 'Thor', 'Hawkeye']
+super_powers = ['Super strength', 'Technology', 'superhuman', 'Unlimited Strength', 'super Energy', 'fighting skills']
+weapons = ["Shield", "Armor", "Batons", "No Weapon", "Mjölnir", "Bow and Arrows"]
+ages = [110, 40, 35, 34, 10000, 30]
+genders = ['M', 'M', 'F', 'M', 'M', 'M']
+
+Avengers = []
+for Name,Age,Gender,Super_Power,Weapon in zip(Super_heroes ,ages,genders,super_powers,weapons):
+    Avengers.append(
+        Avenger(Name,Age,Gender,Super_Power,Weapon)
+    )
+
+print(Avengers[4].getinfo())
